@@ -2,7 +2,7 @@ import sys
 
 
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import PasswordResetForm
 from django.utils.safestring import mark_safe
 
 
@@ -19,10 +19,10 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'input',
-                'id': 'username-field'
+                'id': 'username-field',
+                'placeholder': 'Username'
             }
-        ),
-        label=mark_safe("Username</br>"))
+        ))
 
     password = forms.CharField(
         max_length=14,
@@ -30,9 +30,10 @@ class LoginForm(AuthenticationForm):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input',
-                'id': 'password-field'
-            }),
-        label=mark_safe("Password</br>"))
+                'id': 'password-field',
+                'placeholder': 'Password'
+            }
+        ))
 
 
 sys.modules[__name__] = LoginForm

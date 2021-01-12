@@ -19,19 +19,19 @@ class RegistrationForm(UserCreationForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'input',
-                'id': 'username-field'
+                'id': 'username-field',
+                'placeholder': 'Username'
             }
-        ),
-        label=mark_safe("Username</br>"))
+        ))
 
     email = forms.EmailField(
         widget=forms.TextInput(
             attrs={
                 'class': 'input',
-                'id': 'email-field'
+                'id': 'email-field',
+                'placeholder': 'Email'
             }
-        ),
-        label=mark_safe("Email</br>"))
+        ))
 
     password1 = forms.CharField(
         max_length=100,
@@ -40,19 +40,21 @@ class RegistrationForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input',
-                'id': 'password-field'
-            }),
-        label=mark_safe("Password</br>"))
+                'id': 'password-field',
+                'placeholder': 'Password'
+            }
+        ))
 
     password2 = forms.CharField(
-        max_length=14,
-        min_length=6,
+        max_length=100,
+        min_length=8,
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input',
-                'id': 'confirm-password-field'
-            }),
-        label=mark_safe("Confirm Password</br>"))
+                'id': 'confirm-password-field',
+                'placeholder': 'Confirm Password'
+            }
+        ))
 
     class Meta:
         model = User
