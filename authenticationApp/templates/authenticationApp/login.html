@@ -1,0 +1,42 @@
+{% extends "authenticationApp/base.html" %}
+
+{% block title %}
+  Bloggr
+{% endblock %}
+
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'authenticationApp/css/login.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="frame center">
+        <h1 class="current-route">Bloggr</h1>
+      {% if messages %}
+        {% for msg in messages %}
+          <p class="message">{{msg}}</p>
+        {% endfor %}
+      {% endif %}
+      <form method="POST">
+        <div class="input-container">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <a href="{% url "oauth:begin" "google-oauth2" %}?{{ request.GET.urlencode }}">
+            <img id="google-signin-button" src="{% static 'authenticationApp/images/googleSigninButton.png' %}" alt='google-signin-button'>
+          </a>
+        </div>
+        <div class="button-frame">
+          <button class="button" type="submit">Login</button>
+        </div>
+        </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script%}
+  <script>
+    document.getElementById("username-field").focus()
+  </script>
+{% endblock %}
